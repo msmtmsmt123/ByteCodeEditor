@@ -17,7 +17,7 @@ public class VirtualClassLoader
             Map<String, ClassNode> classMap = JarUtils.loadClasses(jar);
             Map<String, byte[]> other = JarUtils.loadNonClassEntries(jar);
             for(ClassNode cn : classMap.values()){
-                ByteCodeViewer.CLASSES.add((VirtualClass) cn);
+                ByteCodeViewer.CLASSES.add(new VirtualClass(cn));
             }
             for(Map.Entry<String, byte[]> entry : other.entrySet()){
                 ByteCodeViewer.FILES.add(new VirtualFile(entry.getKey(), entry.getValue()));

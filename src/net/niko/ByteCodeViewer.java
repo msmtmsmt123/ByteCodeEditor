@@ -15,7 +15,7 @@ public class ByteCodeViewer
     public static final ArrayList<VirtualClass> CLASSES = new ArrayList<>();
     public static final ArrayList<VirtualFile> FILES = new ArrayList<>();
 
-    public static final String TITLE = ByteCodeViewer.class.getName();
+    public static final String TITLE = ByteCodeViewer.class.getSimpleName();
     public static final int WIDTH = 960, HEIGHT = 690;
 
     private VirtualClassLoader classLoader;
