@@ -14,6 +14,7 @@ public class VirtualClassLoader
 
     public void loadClasses(JarFile jar) throws Throwable{
         if(jar.isValid()){
+            ByteCodeViewer.findInstance().clearSpace();
             Map<String, ClassNode> classMap = JarUtils.loadClasses(jar);
             Map<String, byte[]> other = JarUtils.loadNonClassEntries(jar);
             for(ClassNode cn : classMap.values()){
