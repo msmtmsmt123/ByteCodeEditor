@@ -26,10 +26,14 @@ public class NikoFrame
         fields = new JList<>();
         methods = new JList<>();
 
-        tabbedPane.addTab(TabMode.Opcodes.name(), opcodes);
+        JScrollPane opcodeScroll = new JScrollPane(opcodes);
+        JScrollPane fieldsScroll = new JScrollPane(fields);
+        JScrollPane methodsScroll = new JScrollPane(methods);
+
+        tabbedPane.addTab(TabMode.Opcodes.name(), opcodeScroll);
         tabbedPane.addTab(TabMode.Decompilation.name(), null);
-        tabbedPane.addTab(TabMode.Fields.name(), fields);
-        tabbedPane.addTab(TabMode.Methods.name(), methods);
+        tabbedPane.addTab(TabMode.Fields.name(), fieldsScroll);
+        tabbedPane.addTab(TabMode.Methods.name(), methodsScroll);
 
         return tabbedPane;
     }
@@ -45,13 +49,13 @@ public class NikoFrame
 
         DefaultListModel<String> fieldModel = new DefaultListModel<>();
         for(FieldNode fn : virtualClass.fields){
-            fieldModel.addElement(StringUtils.getModifierString(fn.access) + fn.name + ";");
+            fieldModel.addElement(StringUtils.getFieldFullname(fn));
         }
         fields.setModel(fieldModel);
 
         DefaultListModel<String> methodModel = new DefaultListModel<>();
         for(MethodNode mn : virtualClass.methods){
-            methodModel.addElement(StringUtils.getModifierString(mn.access) + mn.name + ";");
+            methodModel.addElement(StringUtils.getMethodFullName(mn));
         }
         methods.setModel(methodModel);
     }
